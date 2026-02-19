@@ -72,6 +72,10 @@ public class Workflow {
         return transitions.getOrDefault(nodeId, new ArrayList<>());
     }
 
+    public Map<String, Node> getAllNodes(){
+        return Collections.unmodifiableMap(nodes);
+    }
+
 
     public String getTrueNodeId(String nodeId) {
         return trueTransitions.get(nodeId);

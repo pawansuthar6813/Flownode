@@ -2,6 +2,8 @@ package com.flownode.core.execution.node;
 
 
 import com.flownode.core.execution.context.WorkflowExecutionContext;
+import com.flownode.core.execution.resolution.policy.AllCompletedPolicy;
+import com.flownode.core.execution.resolution.policy.ResolutionPolicy;
 import com.flownode.core.state.NodeState;
 
 public abstract class BaseNode implements Node{
@@ -9,6 +11,9 @@ public abstract class BaseNode implements Node{
     protected String nodeId;
     protected String nodeName;
     protected NodeState nodeState;
+
+    // default resolution policy
+    protected ResolutionPolicy resolutionPolicy = new AllCompletedPolicy();
 
 
     public BaseNode(String nodeId, String nodeName) {
@@ -61,6 +66,15 @@ public abstract class BaseNode implements Node{
     @Override
     public void setNodeState(NodeState state) {
         this.nodeState = state;
+    }
+
+    @Override
+    public ResolutionPolicy getResolutionPolicy(){
+        return resolutionPolicy;
+    }
+
+    public void setResolutionPolicy(ResolutionPolicy resolutionPolicy){
+        this.resolutionPolicy = resolutionPolicy;
     }
 
 
